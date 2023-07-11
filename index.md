@@ -1,7 +1,6 @@
-Hello and welcome to this blog. Edit the `index.md` file to change this content. All pages on the blog, including this one, use [Markdown](https://guides.github.com/features/mastering-markdown/). You can include images:
+Hello and welcome to this blog. 
+My name is Phyu and I am a software engineer, who is into deep learning and AI. I am starting my journey in deep learning after a master level university course, I am excited about blogging this journal to help my fellow learners. 
 
-![Image of fast.ai logo](images/logo.png)
+"The only true wisdom is in knowing you know nothing." - Socrates  
 
-## This is a title
-
-And you can include links, like this [link to fast.ai](https://www.fast.ai). Posts will appear after this file. 
+Check out my LinkedIn here https://www.linkedin.com/in/phyuthwekhaing
