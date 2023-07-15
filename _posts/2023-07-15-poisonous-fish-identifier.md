@@ -2,7 +2,7 @@
 
 Deep learning and I were are in on and off relationship throughout 4-5 years span since I have been in my colleage. The topic of AI always excite me and during last year of my colleage, I decided to specialize in AI. Going through difficult subjects like convolution and calculation of them in matrixes to the easier subjects like tokenization in NLP, I enjoyed every courses in my last year of my bachelor degree regardless of how my grades turned out. 
 
-![](images/puffer.jpg)
+![](/images/puffer.jpg)
 
 I also had taken a computer vision project about identifying the texts such as signs and road names in the street photographs. The project took about six months but the research itself goes on about 2-3 months, setting up everything to work in my own computer with lower level GPU and training time including setting up GPU in python wasn't really a fun experience and it took me many hours to set up a model working with a C++ and C# web interface. After the project, I had just threw away the project since it was too time consuming to set up and there were already better solutions than I did and that was when I didn't come up with my own architecture but research on different models and demonstrate what could be an application for the model and set up the small viable prototype with a working prototype. Curent learners in deep learning wouldn't believe it could take 6 months to do so when this blogpost was done in just a few days of training and setting up in the free websites like Kaggle, Hugging face and GitHub. Stay tuned to follow the rest of this post to set up your own model to deployment with a simple classification model to showcase your project in deep learning!!  
 
@@ -140,7 +140,7 @@ im.to_thumb(128,128)
 
 
     
-![png](output_9_0.png)
+![png](/images/output_9_0.png)
     
 
 
@@ -216,7 +216,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
 
 
     
-![png](output_17_0.png)
+![png](/images/output_17_0.png)
     
 
 
@@ -229,7 +229,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
 
 
     
-![png](output_18_0.png)
+![png](/images/output_18_0.png)
     
 
 
@@ -242,7 +242,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
 
 
     
-![png](output_19_0.png)
+![png](/images/output_19_0.png)
     
 
 
@@ -255,7 +255,7 @@ dls.train.show_batch(max_n=4, nrows=1, unique=True)
 
 
     
-![png](output_20_0.png)
+![png](/images/output_20_0.png)
     
 
 
