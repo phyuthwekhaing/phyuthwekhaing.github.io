@@ -1,4 +1,6 @@
 # About
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+Check out my LinkedIn [here](https://www.linkedin.com/in/phyuthwekhaing)
+
+Check out my github [here](https://github.com/phyuthwekhaing)
 
