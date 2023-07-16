@@ -1,14 +1,14 @@
 **Training a classifier to classify poisonous fish types underwater**
 
-After going through deeplearning ai practical course by Jeremy Howard, I am here writing my first blog post in deep learning to show you what I have done so far after lesson 2. The first part of training the model is written here and since the post becomes too long, I am planning on doing my second part of deploying the model into another post. I would totally recommend you to go through his course videos if you are an AI and deep learning enthusiast like me. Furthermore, follow through this post to grasp how easy it is to train a classifier and set up everything by changing just a few codes in lesser than an hour timeframe, leave the model to train (grab a coffee or do some quick yoga session) and fine tune the model after that. This doesn't need any paid software and you can do the learning without a cent with just your computer and internet. 
+After going through the deeplearning ai practical course by Jeremy Howard, I am here writing my first blog post about deep learning to show you what I have done so far after lesson 2. This is the first part about training the model and since the post would become too long, I am planning on writing a second part about deploying the model. I would totally recommend you to go through his course videos if you are an AI and deep learning enthusiast like me. Furthermore, follow through this post to grasp how easy it is to train a classifier and set up everything by changing just a few codes in less than an hour, leave the model to train (grab a coffee or do some quick yoga session) and fine tune the model after that. This doesn't need any paid software and can be done by using just your computer and internet. 
 
 Enjoy the rest of this post! :) 
 ![](/images/puffer.jpg)
-Deep learning and I was in on and off relationship throughout 4-5 years span since I have been in my colleage. The topic of AI always excites me and during last year of my colleage, I decided to specialize in AI. Going through difficult subjects like convolution and calculation of them in matrixes on paper to the easier subjects like tokenization in NLP, I enjoyed every courses in my last year of my bachelor degree in NTU regardless of how my grades turned out. 
+Deep learning and I were in an on and off relationship for 4-5 years ever since I was in colleage. The topic of AI always excites me. During the last year of colleage, I decided to specialize in AI. Ranging from difficult subjects like  calculation of convolution on paper, to the easier subjects like tokenization in NLP, I enjoyed every course in my last year of my bachelor degree in NTU regardless of how my grades turned out. 
 
 ![](/images/9Gag.jpeg)
 
-I also had taken a computer vision project as final year project about identifying the texts such as signs and road names in the street photographs. The project took about six months but the research itself goes on about 2-3 months, setting up everything to work in my own computer with lower level GPU and training time including setting up GPU in python wasn't really a fun experience and it took me many hours to set up a model working with a C++ and C# web interface. After the project, I had just threw away the project since it was too time consuming to set up and there were already better solutions than what I did. I didn't come up with my own model architecture but research on different models available back then and demonstrate what could be an application for the model and set up a small viable prototype. Curent learners in deep learning wouldn't believe it could take 6 months to do so when this blogpost was done in just a few days of training and setting up in the free websites like Kaggle, Hugging face and GitHub. Stay tuned to follow the rest of this post to set up your own model to deployment with a simple classification model to production or a prototype website like I did!!  
+I also took a computer vision project as a final year project. The project was about identifying the texts such as signs and road names in the street photographs. The project took about six months but the research itself took me about 2-3 months, setting up everything to work on my own computer with lower level GPU and longer training time including setting up GPU in python wasn't really a fun experience. It took me many hours to set up a model which interfaces with a C++/C# website. After the project submission and grading, I threw away the project since it was too time consuming to maintain and there were already better solutions than what I had done. I didn't come up with my own model architecture, but researched on different models available back then, and demonstrated what could be an application for the model, and set up a small viable prototype. Current learners in deep learning wouldn't believe it could take 6 months to set up something similar to the classifier in this post. This blogpost was done in just a few days of training and set up in the free websites like Kaggle, Hugging face and GitHub. Stay tuned to follow the rest of this post to set up your own model to deployment like I did!!  
 
 I am running this in Kaggle so the following code is just to check if your notebook is connected to the internet. 
 
@@ -25,7 +25,7 @@ try:
 except socket.error as ex: raise Exception("STOP: No internet. Click '>|' in top right and set 'Internet' switch to on")
 ```
 
-First, I installed fastai and fastbook. Set up fastbook by calling setup_book(). Using fastai is amazingly simple. They have written out these reusable libraries to just call a simple function to handle multiple types of data like images, classification or continuous/table data. Checkout the library to use different dataloaders for your case. 
+First, I installed fastai and fastbook. Set up fastbook by calling setup_book(). Using fastai is amazingly simple. They have written out these reusable libraries just to call a simple function to handle multiple types of data like images, classification or continuous/table data. Checkout the library to use different dataloaders for your case. 
 
 
 ```python
@@ -46,7 +46,7 @@ from fastbook import *
 from fastai.vision.widgets import *
 ```
 
-The function below will download images with search term from duck duck go API. This API is a life saver for AI computer vision small projects like this since with this, downloading multiple photos is a breeze. The default is 200 photos, but you can adjust this number to download smaller or larger number up to 400 images when I tested out. Larger values give me some error message with "next" value so could be the API issue or the the library doesn't support larger numbers.  
+The function below will download images with a search term from "duck duck go"(ddg) API. This API is a life saver for small computer vision projects using machine learning as with this API, downloading multiple photos is a breeze. The default is 200 photos, but you can adjust this number to download smaller or larger numbers up to 400 images(Larger values gave some error message with "next" value so could be the API issue or the the library doesn't support larger numbers).
 
 
 ```python
@@ -60,7 +60,7 @@ search_images_ddg
 
 
 
-I am just testing out the API and the showing the image result in an Image view. There could be some URLs that which are invalid in API result so in our notebook, after downloading them, we have to clean up those invalid paths. 
+I am just testing out the API and showing the image result in an Image view. There could be some URLs which are invalid in the API results so in our notebook, after downloading the images, we have to clean up those invalid paths. 
 
 
 ```python
@@ -156,7 +156,7 @@ im.to_thumb(128,128)
 
 
 
-I currently have 10 types of underwater poisonous fishes. I create a path and if they aren't downloaded yet I will search them using the library function and download images in the path with the folder name. 
+I currently have 10 types of poisonous fish for labelling. I create a path and if the images aren't downloaded previously, I search those terms using ddg API and it returns with the links of images online. I download images in the path with the folder name as search term. 
 
 
 ```python
@@ -188,7 +188,7 @@ fns
 
 
 
-I am using verify_images function from fastai library to check for invalid paths in the folder. There are 59 images which are invalid links when downloaded using API returned links. 
+I am using "verify_images" function from fastai library to check for invalid paths in the folder. There are 59 invalid image links when downloaded using API. 
 
 
 ```python
@@ -210,7 +210,7 @@ Path.unlink will remove them from path.
 failed.map(Path.unlink);
 ```
 
-Here, I am using DataBlock function from fastai, I have ImageBlock as input type and CategoryBlock as output, the datablock won't work without specifying the train and validation split. Here, I will use 20% validation data split in training and validation. Images are resized to 128 px length and width, the categories are the labels of fish type. 
+Here, I am using the DataBlock function from fastai, I have ImageBlock as an input type and CategoryBlock as the output, the datablock won't work without specifying the train and validation split. Here, I used 20% validation data split in training and validation. Images are resized to 128 px length and width, the categories are the labels of fish type. 
 
 
 ```python
@@ -243,7 +243,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
     
 
 
-Before training, there are two resize methods; one is squish which will readjust the image size and squish them in that resolution if the image is landscape. 
+Before training, there are two resize methods; one is squish which will readjust the image size and squish them in that resolution if the image is in landscape. 
 
 
 ```python
@@ -258,7 +258,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
     
 
 
-Padding method below will pad the area missing with the black pixels if they are landscape. 
+The Padding method below will pad the missing areas with black pixels if they are in landscape. 
 
 
 ```python
@@ -273,7 +273,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
     
 
 
-Randomsize crop will crop the image with the scale defined so the object is photographed at different angles. 
+Randomsize crop will crop the image with the scale defined so the object is zoomed in on different positions. 
 
 
 ```python
@@ -288,7 +288,7 @@ dls.train.show_batch(max_n=4, nrows=1, unique=True)
     
 
 
-Now, let's train the model. For data augmentation, aug_trainsforms() function is used so that random transformation is applied in each iteration for the images, the RandomResizedCrop with size 224 (larger) and scale to 0.5 is cropped at different angles of photos to zoom in at different parts of the picture so that the fish body parts are learned in the model. 
+Now, let's train the model. For data augmentation, aug_trainsforms() function is used so that random transformation is applied in each iteration for the images, the RandomResizedCrop with size 224 (larger) and scale to 0.5 is cropped at different angles of photos to zoom in at different parts of the picture so that the model learns various fish features. 
 
 
 ```python
@@ -298,7 +298,7 @@ poisonous_fishes = poisonous_fishes.new(
 dls = poisonous_fishes.dataloaders(path)
 ```
 
-I am using fine_tune here for the resnet pretrained model for transfer learning. Transfer learning is quite popular in recent years with big deep learning projects coming up the magnificent architectures and pretrained with huge datasets of basic objects and animals. We just need to finetune these model in the last layer to solve the classification problem for our dataset. It doesn't need much iteration to train these transfer learning models, just a few iteration lesser than 10 will surffice. In fact, if we train many iterations, the performance will drop since the model will be overfitting to the training data. Therefore, once the validation loss keeps increasing, we should stop before that overfitting happens.  
+I am using the fine_tune function and the resnet pretrained model for transfer learning. Transfer learning is quite popular in recent years with deep learning projects coming up with great model architectures which are pretrained with huge datasets of basic objects and animals such as imagenet. We just need to finetune these model in the last layer to solve the classification problem for our dataset. It doesn't need many iterations to train these transfer learning models, just a few iterations with less than 10 will surffice. In fact, if we train many iterations, the performance will drop since the model will be overfitting to the training data. Therefore, once the validation loss keeps increasing, we should stop before the overfitting happens.  
 
 
 ```python
@@ -465,7 +465,7 @@ learn.fine_tune(10)
 
 The performance is within acceptable range >90% but not that great. 
 
-We can look at confusion matrix to look at where the model misidentify the labels. I am using the function from fastai called ClassificationInterpretation.from_learner() then plot_confusion_matrix(), very useful. We can see some wrong predictions between menta and great white sharks, it could be mislabelling or wrong images. Some confusion between tigerfish and piranha fish is observed too. 
+We can look at confusion matrix to look at where the model misidentifies the labels. I am using the function from fastai called ClassificationInterpretation.from_learner() then plot by using plot_confusion_matrix(), which is very useful. We can see some wrong predictions between mantarays and great white sharks, it could be mislabelling or wrong images. Some confusion between tigerfish and piranha fish is observed too. 
 
 
 ```python
@@ -562,7 +562,7 @@ interp.plot_top_losses(5, nrows=1)
     
 
 
-Let's use their library function for cleaning up the dataset and we can retrain or rerun the validation with cleaned dataset. Some cartoons pictures like above will have to be removed or any pictures not related to labels can be removed from the dataset using the interface GUI as below. 
+Let's use their library function for cleaning up the dataset and we can retrain or rerun the validation with cleaned dataset. Some cartoon pictures like above will have to be removed or any pictures not related to labels can be removed from the dataset using the interface GUI as below. 
 
 
 ```python
@@ -811,7 +811,7 @@ learn.fine_tune(10)
 </table>
 
 
-Plotting the confusion matrix shows that there is still confusion between the shark and mata rays. Some images might have left to be cleaned. 
+Plotting the confusion matrix shows that there is still confusion between the shark and mantarays. Some images might have left to be cleaned. 
 
 
 ```python
@@ -873,7 +873,7 @@ interp.plot_confusion_matrix()
     
 
 
-As seen above, red lion fish is labelled as tiger fish in the validation set, which we have to change the label. We can see that the model helped to clean up the dataset in a way, we can pin point dataset with higher loss/lower confidence to recheck the dataset and instead of going through the dataset one by one which saves a lot of time for data cleaning. Therefore, as mentioned by Jeremy in deep learning course, I agree that it's always a good idea to train the model first with the dataset and cleaning up the data by using the model and retraining is such a good suggestion. We can also see that the third image is neither shark or menta ray which we should remove it. 
+As seen above, red lion fish is labelled as tiger fish in the validation set, in which we have to change the label. We can see that the model helped to clean up the dataset in a way, and now we can pin point dataset with higher loss/lower confidence to recheck the dataset and instead of going through the dataset one by one which saves a lot of time for data cleaning. Therefore, as mentioned by Jeremy in his deep learning course, I agree that it's always a good idea to train the model first with the dataset and clean up the data by using the model and retrain. We can also see that the third image has to be removed since it is neither a shark or a mantaray. 
 
 
 ```python
@@ -1021,7 +1021,7 @@ dls.valid.show_batch(max_n=4, nrows=1)
     
 
 
-I trained the model a few times and found out that 10 times of finetuning is too much and overfitting, therefore, my model will stop at 7 iterations. You need to run a few time with different iteration size to train sufficiently at the same time without overfitting. 
+I trained the model a few times and found out that 10 times of finetuning is too much since it's overfitting, therefore, my model should stop training at 7 iterations to avoid this. You need to run a few times with different iteration sizes to train sufficiently at the same time without overfitting. 
 
 
 ```python
@@ -1157,7 +1157,7 @@ learn.fine_tune(7)
 </table>
 
 
-There is still confusion between shark and meta rays in my model, there may be some resolution or similar shape between two categories, I think I will have to gather more data and retrain them in this case. But I am happy with this accuracy >90% and gonna deploy it to my prototype to demonstrate its use in an app. 
+There is still some confusion between shark and mantarays in my model, there may be similar color resolution or similar shape between two categories, I think I will have to gather more data and retrain them in this case. But I am happy with this accuracy >90% and gonna deploy it to my prototype to demonstrate its use in an app. 
 
 
 ```python
@@ -1260,3 +1260,4 @@ Exporting the model is easy and simple with learn.export(filename). Download thi
 ```python
 learn.export('model.pkl')
 ```
+Part 2 will be about setting up the Hugging Face space by deploying our model and a GitHub web page which communicates with the hugging face API to use the model. 
