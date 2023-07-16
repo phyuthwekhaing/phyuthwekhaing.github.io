@@ -1,4 +1,5 @@
-**Training a classifier to classify poisonous fishes in deep underwater**
+**Training a classifier to classify poisonous fish types underwater**
+
 After going through deeplearning ai practical course by Jeremy Howard, I am here writing my first blog post in deep learning to show you what I have done so far after lesson 2. The first part of training the model is written here and since the post becomes too long, I am planning on doing my second part of deploying the model into another post. I would totally recommand you to go through his course videos if you are an AI and deep learning enthusiast like me. Furthermore, follow through this post to grasp how easy it is to train a classifier and set up everything by changing just a few codes in lesser than an hour timeframe, leave the model to train (grab a coffee or do some quick yoga session) and fine tune the model after that. This doesn't need any paid software and you can do the learning without a cent with just your computer and internet. 
 
 Enjoy the rest of this post! :) 
